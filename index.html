@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-store">
+  <meta http-equiv="Pragma" content="no-cache">
+  <title>落地 · 新课程原型</title>
+  <link rel="stylesheet" href="styles.css?v=20261124-3">
+</head>
+<body>
+  <header class="topbar">
+    <button class="ghost-btn" id="btnHome" type="button">课程大厅</button>
+    <div class="brand">
+      <strong>落地</strong>
+      <span>新课程原型</span>
+    </div>
+    <span class="save-badge" id="saveBadge">本机保存</span>
+  </header>
+
+  <div class="instruction-bar" id="instructionBar">
+    <strong>HOW TO PLAY</strong>
+    <span id="instructionEn">Tap an underlined word or phrase for meaning. Tap “Sentence” for the full translation.</span>
+    <span id="instructionZh" hidden>点击带下划线的单词或短语查看含义；点击“整句”查看完整翻译。</span>
+    <button class="ghost-btn" id="btnInstructionZh" type="button">中文说明</button>
+    <button class="ghost-btn" id="btnHandbook" type="button">知识手册</button>
+  </div>
+
+  <main id="app">
+    <section class="screen" id="screenHome">
+      <div class="hero card">
+        <p class="eyebrow">ADULT ENGLISH · FOUNDATION TO FIRST STORY</p>
+        <h1>先学得会，<br>再把英语用出去。</h1>
+        <p class="lead">基础营覆盖 L0–L2。第一章从入境、行李和接机开始，三种内容版本共用同一条故事线。</p>
+        <div class="hero-actions">
+          <button class="primary-btn" id="btnBaseCamp" type="button">进入基础营</button>
+          <button class="secondary-btn" id="btnChapterOne" type="button">第一章 · 出国</button>
+          <button class="ghost-btn" id="btnRulesStory" type="button">进入规则怪谈</button>
+        </div>
+        <div class="stat-row" id="homeStats"></div>
+      </div>
+
+      <div class="grid-two">
+        <section class="card">
+          <p class="eyebrow">LEARNER PROFILE</p>
+          <h2>你的旅行信息</h2>
+          <p class="muted">只用于替换称呼、旅行目的、停留时间和住处，不做角色养成。</p>
+          <div class="form-grid">
+            <label>称呼<input id="profileName" maxlength="24" autocomplete="nickname"></label>
+            <label>旅行目的
+              <select id="profilePurpose">
+                <option value="sightseeing">观光</option>
+                <option value="business">商务</option>
+                <option value="family">探亲</option>
+                <option value="study">学习</option>
+              </select>
+            </label>
+            <label>停留时间<input id="profileStay" maxlength="32" placeholder="about ten days"></label>
+            <label>酒店或住处<input id="profileLodging" maxlength="48" placeholder="the Riverside Hotel"></label>
+            <label>所在城市<input id="profileCity" maxlength="24" placeholder="Osaka"></label>
+            <label>基础营等级
+              <select id="bandSelect">
+                <option value="L0">L0 · 能参与</option>
+                <option value="L1">L1 · 能办成事</option>
+                <option value="L2">L2 · 能处理小问题</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="card">
+          <p class="eyebrow">SAVE &amp; CONTINUE</p>
+          <h2>学习记录</h2>
+          <p class="muted">当前版本保存在本机浏览器。换设备或清理浏览器前，请先导出存档。</p>
+          <div class="stack">
+            <button class="secondary-btn" id="btnExport" type="button">导出存档</button>
+            <button class="secondary-btn" id="btnImport" type="button">导入存档</button>
+            <button class="ghost-btn danger" id="btnReset" type="button">清空原型记录</button>
+          </div>
+          <div class="notice" id="saveNotice">完成关卡、跳过或切换基础营等级、剧情版本后会立即保存。</div>
+        </section>
+      </div>
+    </section>
+
+    <section class="screen" id="screenCamp" hidden>
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">FOUNDATION CAMP · L0–L2</p>
+          <h1>基础营</h1>
+          <p class="muted">5 个训练区 × 3 个能力级。每个微关卡都包含主动表达和即时确认。</p>
+        </div>
+        <button class="ghost-btn" id="btnCampHome" type="button">返回大厅</button>
+      </div>
+      <div class="notice" id="campNotice">跳过只解锁内容，不会标记为完成或掌握。</div>
+      <div class="knowledge-map" id="campKnowledgeMap">
+        <div><span>L0</span><strong>人称与 be 动词</strong><p>I / you / he / she / we / they + am / is / are，先学会身份、状态和基础需求。</p></div>
+        <div><span>L1</span><strong>五大基本句型</strong><p>主谓、主系表、主谓宾、主谓双宾、主谓宾补，并区分及物与不及物动词。</p></div>
+        <div><span>L2</span><strong>复杂一点的表达</strong><p>过去事件、原因与请求、澄清重述，在服务问题中复用已经学过的句型。</p></div>
+      </div>
+      <div id="campMap"></div>
+    </section>
+
+    <section class="screen" id="screenHandbook" hidden>
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">REFERENCE BOOK</p>
+          <h1>基础知识手册</h1>
+          <p class="muted">按需查阅，不要求按顺序读完。当前内容会随课程扩充。</p>
+        </div>
+        <button class="ghost-btn" id="btnHandbookHome" type="button">返回大厅</button>
+      </div>
+      <div class="card handbook-search">
+        <label for="handbookSearch">搜索知识</label>
+        <input id="handbookSearch" placeholder="例如：be、及物、五大句型" autocomplete="off">
+      </div>
+      <div class="card curriculum-sample" id="curriculumSample"></div>
+      <div class="handbook-grid" id="handbookGrid"></div>
+      <div class="card handbook-sources" id="handbookSources"></div>
+    </section>
+
+    <section class="screen" id="screenLesson" hidden>
+      <div class="lesson-shell card">
+        <div class="lesson-top">
+          <div>
+            <p class="eyebrow" id="lessonEyebrow">MICRO LEVEL</p>
+            <h1 id="lessonTitle">基础营</h1>
+            <p class="muted" id="lessonGoal"></p>
+          </div>
+          <button class="ghost-btn" id="btnSkipNode" type="button">跳过本关</button>
+        </div>
+        <div class="progress-line"><span id="lessonProgress"></span></div>
+        <div class="step-card" id="lessonBody"></div>
+        <div class="choice-list" id="lessonChoices"></div>
+        <div class="answer-box" id="answerBox" hidden>
+          <label for="answerInput">你的回答</label>
+          <textarea id="answerInput" rows="3" autocomplete="off" placeholder="Type or speak your answer"></textarea>
+          <div class="answer-actions">
+            <button class="primary-btn" id="btnSubmitAnswer" type="button">提交回答</button>
+            <button class="mic-btn" id="btnMic" type="button">开始说</button>
+            <button class="secondary-btn" id="btnHint" type="button">提示</button>
+          </div>
+        </div>
+        <div class="hint-box" id="hintBox" hidden></div>
+        <div class="feedback" id="feedback" aria-live="polite"></div>
+        <div class="lesson-actions">
+          <button class="secondary-btn" id="btnSpeak" type="button">播放英文</button>
+          <button class="primary-btn" id="btnContinue" type="button" hidden>继续</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screenChapterStart" hidden>
+      <div class="card chapter-start">
+        <p class="eyebrow">CHAPTER 01 · GOING ABROAD</p>
+        <h1>出国</h1>
+        <p class="lead">从机场入境开始：入境 → 行李 → 遗失申报 → 到达大厅 → 接机会合 → 离站。首次通关约 45–60 分钟。</p>
+        <div class="pill-row">
+          <span class="pill">5 个主任务</span>
+          <span class="pill">1 个首领</span>
+          <span class="pill">2 条接机分支</span>
+          <span class="pill">3 个结局</span>
+        </div>
+        <label class="band-choice">本章版本
+          <select id="chapterBand">
+            <option value="L0">基础版 · 慢速与完整支架</option>
+            <option value="L1">标准版 · 标准对话</option>
+            <option value="L2">进阶版 · 自然语速与自由回答</option>
+          </select>
+        </label>
+        <div class="hero-actions">
+          <button class="primary-btn" id="btnStartChapter" type="button">开始本章</button>
+          <button class="secondary-btn" id="btnContinueChapter" type="button" hidden>继续上次进度</button>
+        </div>
+        <p class="muted">内容版本可在任务结算点切换；剧情、分支和学习证据不会重置。</p>
+      </div>
+    </section>
+
+    <section class="screen" id="screenRulesStart" hidden>
+      <div class="card chapter-start rules-start">
+        <p class="eyebrow">SCRIPT · RULES HORROR</p>
+        <h1>规则怪谈：第七层</h1>
+        <p class="lead">午夜值班、临时修订和一条没有写进大楼地图的规则。你必须判断哪条规则当前有效、哪些信息没有依据，并说明行动理由。</p>
+        <div class="pill-row">
+          <span class="pill">CET-4 阅读证据</span>
+          <span class="pill">IELTS Academic T/F/NG</span>
+          <span class="pill">条件与推断</span>
+          <span class="pill">口头总结</span>
+        </div>
+        <label class="band-choice">内容版本
+          <select id="rulesBand">
+            <option value="L0">基础版 · 短句与完整支架</option>
+            <option value="L1">标准版 · 标准阅读</option>
+            <option value="L2">进阶版 · 自然学术表达</option>
+          </select>
+        </label>
+        <div class="hero-actions">
+          <button class="primary-btn" id="btnStartRules" type="button">开始序章</button>
+          <button class="secondary-btn" id="btnContinueRules" type="button" hidden>继续规则怪谈</button>
+        </div>
+        <p class="muted">本剧本首批 6 个任务均已回链到四级与 IELTS Academic 已登记能力节点。</p>
+      </div>
+    </section>
+
+    <section class="screen" id="screenChapter" hidden>
+      <div class="chapter-shell">
+        <div class="chapter-head card">
+          <div>
+            <p class="eyebrow" id="chapterTask">CHAPTER 01</p>
+            <h1 id="chapterScene">剧情</h1>
+          </div>
+          <div class="chapter-tools">
+            <label class="compact-select">版本
+              <select id="chapterBandLive">
+                <option value="L0">基础版</option>
+                <option value="L1">标准版</option>
+                <option value="L2">进阶版</option>
+              </select>
+            </label>
+            <button class="ghost-btn" id="btnChapterMap" type="button">章节入口</button>
+          </div>
+        </div>
+        <div class="task-rail" id="chapterTasks"></div>
+        <div class="scene-card card">
+          <img id="chapterImage" alt="">
+          <div class="scene-copy" id="chapterBody"></div>
+          <div class="choice-list" id="chapterChoices"></div>
+          <div class="answer-box" id="chapterAnswerBox" hidden>
+            <label for="chapterAnswer">你的回答</label>
+            <textarea id="chapterAnswer" rows="4" autocomplete="off" placeholder="Try it in your own words"></textarea>
+            <div class="answer-actions">
+              <button class="primary-btn" id="btnSubmitChapterAnswer" type="button">提交</button>
+              <button class="mic-btn" id="btnChapterMic" type="button">开始说</button>
+              <button class="secondary-btn" id="btnChapterHint" type="button">提示</button>
+            </div>
+          </div>
+          <div class="check-box" id="chapterCheckBox" hidden>
+            <p class="eyebrow">QUICK CHECK</p>
+            <label for="chapterCheckInput" id="chapterCheckPrompt">补全关键词</label>
+            <input id="chapterCheckInput" autocomplete="off">
+            <button class="secondary-btn" id="btnSubmitChapterCheck" type="button">确认</button>
+          </div>
+          <div class="hint-box" id="chapterHintBox" hidden></div>
+          <div class="feedback" id="chapterFeedback" aria-live="polite"></div>
+          <div class="lesson-actions">
+            <button class="secondary-btn" id="btnChapterSpeak" type="button">播放英文</button>
+            <button class="primary-btn" id="btnChapterContinue" type="button">继续</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" id="screenEnding" hidden>
+      <div class="card ending-card">
+        <p class="eyebrow" id="endingEyebrow">CHAPTER RESULT</p>
+        <h1 id="endingTitle"></h1>
+        <p class="lead" id="endingText"></p>
+        <div class="stat-row" id="endingStats"></div>
+        <div class="hero-actions">
+          <button class="primary-btn" id="btnEndingHome" type="button">返回课程大厅</button>
+          <button class="secondary-btn" id="btnEndingRetry" type="button" hidden>从关键选择重试</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" hidden></div>
+  <input id="importSave" type="file" accept="application/json,.json" hidden>
+
+  <div class="lookup-mask" id="lookupPanel" hidden>
+    <section class="lookup-sheet" role="dialog" aria-modal="true" aria-labelledby="lookupTerm">
+      <button class="lookup-close" id="btnLookupClose" type="button" aria-label="关闭">×</button>
+      <p class="eyebrow" id="lookupType">WORD</p>
+      <h2 id="lookupTerm"></h2>
+      <p class="lookup-meaning" id="lookupMeaning"></p>
+      <p class="muted" id="lookupNote"></p>
+      <div class="lookup-breakdown" id="lookupBreakdown"></div>
+      <button class="secondary-btn" id="btnLookupSpeak" type="button">听发音</button>
+    </section>
+  </div>
+
+  <script src="course-data.js?v=20261124-3"></script>
+  <script src="engine.js?v=20261124-3"></script>
+  <script src="lookup.js?v=20261124-3"></script>
+  <script src="handbook-data.js?v=20261124-3"></script>
+  <script src="exam-knowledge.js?v=20261124-3"></script>
+  <script src="rules-story-data.js?v=20261124-3"></script>
+  <script src="app.js?v=20261124-3"></script>
+</body>
+</html>
