@@ -2,6 +2,9 @@
 
 英语闯关新课程独立原型。
 
+- 公开网址：https://yuese-work.github.io/english-quest-next/
+- GitHub 仓库：https://github.com/yuese-work/english-quest-next
+
 包含：
 
 - 基础营 L0–L2
